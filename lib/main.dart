@@ -1,15 +1,21 @@
+//import 'dart:js_util';
+
 import 'package:flutter/material.dart';
+import 'package:habitcheck/home_page.dart';
 
+void main() {
+  runApp(MyApp());
+}
 
-void main() => runApp(MaterialApp(
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  home: Scaffold(
-    appBar: AppBar(
-      title: const Text('HabitCheck',
-                  
-      ),
-
-      backgroundColor: Colors.amber,
-    ),
-  ),
-));
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: HomePage(),
+    );
+  }
+}
+    
