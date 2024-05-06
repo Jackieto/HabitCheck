@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:habitcheck/components/habit_tile.dart';
+import 'package:habitcheck/components/add_button.dart';
+import 'package:habitcheck/components/new_habit_box.dart';
+
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
@@ -26,13 +29,17 @@ class _HomePageState extends State<HomePage>{
 
   //crear un nuevo habito
   void createNewHabit(){
-
+      showDialog(context: context, builder: (context) { 
+        return NewHabitBox();
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 67, 174, 204),
+      floatingActionButton: AddHabitButton(onPressed: createNewHabit),
       body: ListView.builder(
         itemCount: habitList.length,
         itemBuilder: (context,index){
