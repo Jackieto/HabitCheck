@@ -28,12 +28,41 @@ class _HomePageState extends State<HomePage>{
   }
 
   //crear un nuevo habito
+
+  final _habitController = TextEditingController();
+
   void createNewHabit(){
       showDialog(context: context, builder: (context) { 
-        return NewHabitBox();
+        return NewHabitBox(
+          habitController: _habitController,
+          onSave: saveNewHabit,
+          onCancel: cancelNewHabit ,
+
+        );
       },
     );
   }
+
+  //guardar nuevo habito
+  void saveNewHabit(){
+    setState(() {
+    habitList.add([_habitController.text,false]);
+      
+    });
+
+    _habitController.clear(); //limpiar texto
+    Navigator.of(context).pop(); //ir al estado anterior
+
+  }
+
+  //cancelar nuevo habito
+  void cancelNewHabit(){
+    _habitController.clear(); //limpiar texto
+    Navigator.of(context).pop(); //ir al estado anterior
+  }
+
+
+  //cancelar nuevo habito
 
   @override
   Widget build(BuildContext context) {
