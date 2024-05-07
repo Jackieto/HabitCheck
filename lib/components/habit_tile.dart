@@ -63,7 +63,7 @@ class HabitTile extends StatelessWidget {
                 ],
                 onSelected: (String value) {
                   if(value == 'Editar'){
-                      settingsClicked;
+                      settingsClicked!(context);
                   }
 
                   if(value == 'Delete'){

@@ -67,20 +67,35 @@ class _HomePageState extends State<HomePage>{
     Navigator.of(context).pop(); //ir al estado anterior
   }
 
+  void editHabit(int index){
+    setState(() {
+      habitList[index][0] = _habitController.text;
+    });
+      _habitController.clear(); //limpiar texto
+      Navigator.of(context).pop(); //ir al estado anterior
+  }
+
   //opciones de habito
 
   void openHabitSettings(int index){
-
+    showDialog(
+      context: context, 
+      builder: (context){
+        return NewHabitBox(
+          habitController: _habitController,
+          onSave: () => editHabit(index),
+          onCancel: cancelNewHabit,
+          );
+      },
+    );
   }
-
 
 
   //borrar habito
 
   void deleteHabit(int index){
       setState(() {
-      habitList.remove(index);
-        
+      habitList.remove(habitList[index]);
       });
   }
 
