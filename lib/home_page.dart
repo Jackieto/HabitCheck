@@ -67,8 +67,22 @@ class _HomePageState extends State<HomePage>{
     Navigator.of(context).pop(); //ir al estado anterior
   }
 
+  //opciones de habito
 
-  //cancelar nuevo habito
+  void openHabitSettings(int index){
+
+  }
+
+
+
+  //borrar habito
+
+  void deleteHabit(int index){
+      setState(() {
+      habitList.remove(index);
+        
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +96,9 @@ class _HomePageState extends State<HomePage>{
           habitName: habitList[index][0],  //primer atributo de cada elemento de la lista
            habitCompleted:habitList[index][1],
            onChanged: (value) => checkBoxTapped(value,index),
+           settingsClicked: (context) => openHabitSettings(index),
+           deleteClicked: (context) => deleteHabit(index) ,
+
            );
         }
         

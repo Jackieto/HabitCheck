@@ -5,13 +5,17 @@ class HabitTile extends StatelessWidget {
   final String habitName;
   final bool habitCompleted;
   final Function(bool?)? onChanged;
+  final Function(BuildContext)? settingsClicked;
+  final Function(BuildContext)? deleteClicked;
+
 
   const HabitTile({
     super.key, 
     required this.habitName, 
     required this.habitCompleted,
-    required this.onChanged
-    
+    required this.onChanged,
+    required this.settingsClicked,
+    required this.deleteClicked
     });
     
 
@@ -38,17 +42,33 @@ class HabitTile extends StatelessWidget {
               PopupMenuButton<String>(
                 itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                   const PopupMenuItem<String>(
-                    value: 'opcion_1',
-                    child: Text('Opción 1'),
+                    value: 'Editar',
+                    child: ListTile(
+                      leading: Icon(Icons.edit),
+                      title: Text('Editar'),
+                    ),
                   ),
+                
+                  PopupMenuDivider(),
                   const PopupMenuItem<String>(
-                    value: 'opcion_2',
-                    child: Text('Opción 2'),
+                    value: 'Delete',
+                    child: ListTile(
+                      leading: Icon(Icons.delete),
+                      title: Text('Eliminar'),
+                    ),
+                    
                   ),
+
                   // Agrega más opciones si lo deseas
                 ],
                 onSelected: (String value) {
-                  // Maneja la selección de la opción aquí
+                  if(value == 'Editar'){
+                      settingsClicked;
+                  }
+
+                  if(value == 'Delete'){
+                      deleteClicked!(context);
+                  }
                 },
               ),
               
