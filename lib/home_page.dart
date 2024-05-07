@@ -45,8 +45,14 @@ class _HomePageState extends State<HomePage>{
 
   //guardar nuevo habito
   void saveNewHabit(){
-    setState(() {
-    habitList.add([_habitController.text,false]);
+    setState(() { 
+
+    if(_habitController.text.trim().isEmpty){
+    //   return error
+
+    }else{
+      habitList.add([_habitController.text,false]);
+     }
       
     });
 
